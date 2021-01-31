@@ -33,8 +33,8 @@ func (p *Peak) Linear() int {
 // DandC - Divide and Conquer O(logn)
 func (p *Peak) DandC() int {
 	// start in the middle
-	i := len(p.input) / 2
-	return p.recursiveFind(i)
+	// i := len(p.input) / 2
+	return p.dynamic()
 
 }
 
