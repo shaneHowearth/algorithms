@@ -1,32 +1,32 @@
 # Classic sorting algorithm examples
 ## Bubble Sort
-Worst Case Performance O(n²)
-Average Case Performance O(n²)
-Best Case Performance O(n), list is already sorted.
+* Worst Case Performance O(n²)
+* Average Case Performance O(n²)
+* Best Case Performance O(n), list is already sorted.
 
 ## Insertion Sort //TODO
-Worst Case Performance O(n²)
-Average Case Performance O(n²)
-Best Case Performance O(n), list is already sorted.
-Worst Case Space Complexity O(n) total, O(1) auxiliary.
+* Worst Case Performance O(n²)
+* Average Case Performance O(n²)
+* Best Case Performance O(n), list is already sorted.
+* Worst Case Space Complexity O(n) total, O(1) auxiliary.
 
 ## Heap Sort // TODO
-Worst Case Performance O(n log n)
-Average Case O(n log n)
-Best Case Performance O(n log n), distinct keys, O(n) equal keys.
-Worst Case Space Complexity O(n) total, O(1) auxiliary.
+* Worst Case Performance O(n log n)
+* Average Case O(n log n)
+* Best Case Performance O(n log n), distinct keys, O(n) equal keys.
+* Worst Case Space Complexity O(n) total, O(1) auxiliary.
 
 ## Merge Sort
-Worst Case Performance O(n log n)
-Average Case O(n log n)
-Best Case Performance O(n log n), typical, O(n) O(n).
-Worst Case Space Complexity O(n) total, O(n) auxiliary (O(1) auxiliary with linked lists).
+* Worst Case Performance O(n log n)
+* Average Case O(n log n)
+* Best Case Performance O(n log n), typical, O(n) O(n).
+* Worst Case Space Complexity O(n) total, O(n) auxiliary (O(1) auxiliary with linked lists).
 
 ## Quicksort
-Worst Case Performance O(n²)
-Average Case Performance O(n log n)
-Best Case Performance O(n log n), simple partition, O(n) three way partition and equal keys.
-Worst Case Space Complexity O(n) auxiliary , (O(log n) Hoare, 1962).
+* Worst Case Performance O(n²)
+* Average Case Performance O(n log n)
+* Best Case Performance O(n log n), simple partition, O(n) three way partition and equal keys.
+* Worst Case Space Complexity O(n) auxiliary , (O(log n) Hoare, 1962).
 
 ## Benchmarks for existing algorithms
 ``` shell
