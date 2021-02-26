@@ -1,32 +1,11 @@
 # Classic sorting algorithm examples
-## Bubble Sort
-* Worst Case Performance O(n²)
-* Average Case Performance O(n²)
-* Best Case Performance O(n), list is already sorted.
-
-## Insertion Sort //TODO
-* Worst Case Performance O(n²)
-* Average Case Performance O(n²)
-* Best Case Performance O(n), list is already sorted.
-* Worst Case Space Complexity O(n) total, O(1) auxiliary.
-
-## Heap Sort // TODO
-* Worst Case Performance O(n log n)
-* Average Case O(n log n)
-* Best Case Performance O(n log n), distinct keys, O(n) equal keys.
-* Worst Case Space Complexity O(n) total, O(1) auxiliary.
-
-## Merge Sort
-* Worst Case Performance O(n log n)
-* Average Case O(n log n)
-* Best Case Performance O(n log n), typical, O(n) O(n).
-* Worst Case Space Complexity O(n) total, O(n) auxiliary (O(1) auxiliary with linked lists).
-
-## Quicksort
-* Worst Case Performance O(n²)
-* Average Case Performance O(n log n)
-* Best Case Performance O(n log n), simple partition, O(n) three way partition and equal keys.
-* Worst Case Space Complexity O(n) auxiliary , (O(log n) Hoare, 1962).
+| Algorithm | Worst Case | Average Case | Best Case | Worste Case Space Complexity | Done |
+|:---:|:---:|:---:|:---:|:---|:---|
+| Bubble Sort | O(n²) | O(n²) | O(n), list is already sorted. |||
+| Insertion Sort | O(n²) | O(n²) | O(n), list is already sorted. | O(n) total, O(1) auxiliary. | TODO |
+| Heap Sort | O(n log n) | O(n log n) | O(n log n), distinct keys, O(n) equal keys.| O(n) total, O(1) auxiliary. | TODO |
+| Merge Sort | O(n log n) | O(n log n) | O(n log n), typical, O(n) O(n) | O(n) total, O(n) auxiliary (O(1) auxiliary with linked lists). ||
+| Quicksort | O(n²) | O(n log n) | O(n log n), simple partition, O(n) three way partition and equal keys. | O(n) auxiliary , (O(log n) Hoare, 1962). ||
 
 ## Benchmarks for existing algorithms
 ``` shell
