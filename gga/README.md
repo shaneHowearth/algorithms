@@ -10,38 +10,7 @@
 | Quicksort | O(n²) | O(n log n) | O(n log n), simple partition, O(n) three way partition and equal keys. | O(n) auxiliary , (O(log n) Hoare, 1962). ||
 
 ## Benchmarks
-Note: the benchmarks shown below suggest a problem with the benchmarking tests
+Note: Have fixed the benchmarks, but they are still running
 ``` shell
-$ go test -bench . ./...
-rand seeded
-goos: linux
-goarch: amd64
-pkg: github.com/shanehowearth/algorithms/gga/bubble
-BenchmarkSort-4            10000          15430408 ns/op
-PASS
-ok      github.com/shanehowearth/algorithms/gga/bubble  154.307s
-goos: linux
-goarch: amd64
-pkg: github.com/shanehowearth/algorithms/gga/heap
-BenchmarkSort-4            10000            420515 ns/op
-PASS
-ok      github.com/shanehowearth/algorithms/gga/heap    4.208s
-goos: linux
-goarch: amd64
-pkg: github.com/shanehowearth/algorithms/gga/insertion
-BenchmarkSort-4           141862            124053 ns/op
-PASS
-ok      github.com/shanehowearth/algorithms/gga/insertion       17.686s
-goos: linux
-goarch: amd64
-pkg: github.com/shanehowearth/algorithms/gga/merge
-BenchmarkSort-4            10000            400592 ns/op
-PASS
-ok      github.com/shanehowearth/algorithms/gga/merge   4.016s
-goos: linux
-goarch: amd64
-pkg: github.com/shanehowearth/algorithms/gga/quick
-BenchmarkSort-4            10000          10303087 ns/op
-PASS
-ok      github.com/shanehowearth/algorithms/gga/quick   103.035s
+$ go test -bench . ./... -timeout 0 -benchmem
 ```

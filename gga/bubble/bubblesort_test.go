@@ -44,8 +44,10 @@ func init() {
 	fmt.Println("rand seeded")
 }
 func BenchmarkSort(b *testing.B) {
-	input := rand.Perm(b.N)
 	for i := 0; i < b.N; i++ {
-		bubble.Sort(input[:i])
+		b.StopTimer()
+		input := rand.Perm(b.N)
+		b.StartTimer()
+		bubble.Sort(input)
 	}
 }

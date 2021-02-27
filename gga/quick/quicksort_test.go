@@ -43,8 +43,10 @@ func init() {
 }
 
 func BenchmarkSort(b *testing.B) {
-	input := rand.Perm(b.N)
 	for i := 0; i < b.N; i++ {
-		quick.Sort(input[:i])
+		b.StopTimer()
+		input := rand.Perm(b.N)
+		b.StartTimer()
+		quick.Sort(input)
 	}
 }
