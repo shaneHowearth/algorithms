@@ -1,8 +1,9 @@
 # Classic sorting algorithm examples
 
 
-| Algorithm | Worst Case | Average Case | Best Case | Worst Case Space Complexity | Done |
-|:---:|:---:|:---:|:---:|:---|:---|
+| Algorithm | Worst Case | Average Case | Best Case | Worst Case Space Complexity | Notes |
+|:---|:---:|:---:|:---:|:---|:---|
+| Built in ||||| Go's built in sorting methods. |
 | Bubble Sort | O(n²) | O(n²) | O(n), list is already sorted. |||
 | Insertion Sort | O(n²) | O(n²) | O(n), list is already sorted. | O(n) total, O(1) auxiliary. ||
 | Heap Sort | O(n log n) | O(n log n) | O(n log n), distinct keys, O(n) equal keys.| O(n) total, O(1) auxiliary. ||
@@ -18,6 +19,13 @@ pkg: github.com/shanehowearth/algorithms/gga/bubble
 BenchmarkSort-4            10000         105230713 ns/op               0 B/op          0 allocs/op
 PASS
 ok      github.com/shanehowearth/algorithms/gga/bubble  1054.907s
+goos: linux
+goarch: amd64
+pkg: github.com/shanehowearth/algorithms/gga/builtin
+BenchmarkSort-4            10000           1256226 ns/op              32 B/op          1 allocs/op
+BenchmarkCustom-4          10000           1122302 ns/op              64 B/op          2 allocs/op
+PASS
+ok      github.com/shanehowearth/algorithms/gga/builtin 28.577s
 goos: linux
 goarch: amd64
 pkg: github.com/shanehowearth/algorithms/gga/heap
