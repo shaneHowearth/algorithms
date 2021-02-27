@@ -1,4 +1,4 @@
-package heap_test
+package insertion_test
 
 import (
 	"math/rand"
@@ -6,10 +6,10 @@ import (
 	"time"
 
 	"github.com/bmizerany/assert"
-	"github.com/shanehowearth/algorithms/gga/heap"
+	"github.com/shanehowearth/algorithms/sorting/insertion"
 )
 
-func TestHeap(t *testing.T) {
+func TestInsertion(t *testing.T) {
 	testcases := map[string]struct {
 		before []int
 		after  []int
@@ -29,7 +29,7 @@ func TestHeap(t *testing.T) {
 	}
 	for name, tc := range testcases {
 		t.Run(name, func(t *testing.T) {
-			heap.Sort(tc.before)
+			insertion.Sort(tc.before)
 			assert.Equal(t, len(tc.after), len(tc.before), "Array lengths do not match")
 			for idx := range tc.after {
 				assert.Equalf(t, tc.after[idx], tc.before[idx], "Array indicies at %d did not match %v", idx, tc.before)
@@ -47,6 +47,6 @@ func BenchmarkSort(b *testing.B) {
 		b.StopTimer()
 		input := rand.Perm(b.N)
 		b.StartTimer()
-		heap.Sort(input)
+		insertion.Sort(input)
 	}
 }

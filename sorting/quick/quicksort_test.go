@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/shanehowearth/algorithms/gga/quick"
+	"github.com/shanehowearth/algorithms/sorting/quick"
 	"github.com/stretchr/testify/assert"
 )
 

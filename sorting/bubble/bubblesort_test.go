@@ -1,15 +1,16 @@
-package merge_test
+package bubble_test
 
 import (
+	"fmt"
 	"math/rand"
 	"testing"
 	"time"
 
 	"github.com/bmizerany/assert"
-	"github.com/shanehowearth/algorithms/gga/merge"
+	"github.com/shanehowearth/algorithms/sorting/bubble"
 )
 
-func TestMerge(t *testing.T) {
+func TestBubble(t *testing.T) {
 	testcases := map[string]struct {
 		before []int
 		after  []int
@@ -29,10 +30,10 @@ func TestMerge(t *testing.T) {
 	}
 	for name, tc := range testcases {
 		t.Run(name, func(t *testing.T) {
-			merge.Sort(tc.before)
+			bubble.Sort(tc.before)
 			assert.Equal(t, len(tc.after), len(tc.before), "Array lengths do not match")
 			for idx := range tc.after {
-				assert.Equalf(t, tc.after[idx], tc.before[idx], "Array indicies at %d did not match %v", idx, tc.before)
+				assert.Equalf(t, tc.after[idx], tc.before[idx], "Array indicies at %d did not match", idx)
 			}
 		})
 	}
@@ -40,13 +41,13 @@ func TestMerge(t *testing.T) {
 
 func init() {
 	rand.Seed(time.Now().UTC().UnixNano())
+	fmt.Println("rand seeded")
 }
-
 func BenchmarkSort(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		b.StopTimer()
 		input := rand.Perm(b.N)
 		b.StartTimer()
-		merge.Sort(input)
+		bubble.Sort(input)
 	}
 }

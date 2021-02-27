@@ -1,4 +1,4 @@
-package insertion_test
+package merge_test
 
 import (
 	"math/rand"
@@ -6,10 +6,10 @@ import (
 	"time"
 
 	"github.com/bmizerany/assert"
-	"github.com/shanehowearth/algorithms/gga/insertion"
+	"github.com/shanehowearth/algorithms/sorting/merge"
 )
 
-func TestInsertion(t *testing.T) {
+func TestMerge(t *testing.T) {
 	testcases := map[string]struct {
 		before []int
 		after  []int
@@ -29,7 +29,7 @@ func TestInsertion(t *testing.T) {
 	}
 	for name, tc := range testcases {
 		t.Run(name, func(t *testing.T) {
-			insertion.Sort(tc.before)
+			merge.Sort(tc.before)
 			assert.Equal(t, len(tc.after), len(tc.before), "Array lengths do not match")
 			for idx := range tc.after {
 				assert.Equalf(t, tc.after[idx], tc.before[idx], "Array indicies at %d did not match %v", idx, tc.before)
@@ -47,6 +47,6 @@ func BenchmarkSort(b *testing.B) {
 		b.StopTimer()
 		input := rand.Perm(b.N)
 		b.StartTimer()
-		insertion.Sort(input)
+		merge.Sort(input)
 	}
 }

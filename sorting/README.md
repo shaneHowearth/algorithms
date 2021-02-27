@@ -15,39 +15,39 @@
 $ go test -bench . ./... -timeout 0 -benchmem
 goos: linux
 goarch: amd64
-pkg: github.com/shanehowearth/algorithms/gga/bubble
+pkg: github.com/shanehowearth/algorithms/sorting/bubble
 BenchmarkSort-4            10000         105230713 ns/op               0 B/op          0 allocs/op
 PASS
-ok      github.com/shanehowearth/algorithms/gga/bubble  1054.907s
+ok      github.com/shanehowearth/algorithms/sorting/bubble  1054.907s
 goos: linux
 goarch: amd64
-pkg: github.com/shanehowearth/algorithms/gga/builtin
+pkg: github.com/shanehowearth/algorithms/sorting/builtin
 BenchmarkSort-4            10000           1256226 ns/op              32 B/op          1 allocs/op
 BenchmarkCustom-4          10000           1122302 ns/op              64 B/op          2 allocs/op
 PASS
-ok      github.com/shanehowearth/algorithms/gga/builtin 28.577s
+ok      github.com/shanehowearth/algorithms/sorting/builtin 28.577s
 goos: linux
 goarch: amd64
-pkg: github.com/shanehowearth/algorithms/gga/heap
+pkg: github.com/shanehowearth/algorithms/sorting/heap
 BenchmarkSort-4            10000           1208035 ns/op               0 B/op          0 allocs/op
 PASS
-ok      github.com/shanehowearth/algorithms/gga/heap    14.635s
+ok      github.com/shanehowearth/algorithms/sorting/heap    14.635s
 goos: linux
 goarch: amd64
-pkg: github.com/shanehowearth/algorithms/gga/insertion
+pkg: github.com/shanehowearth/algorithms/sorting/insertion
 BenchmarkSort-4            10000          14107052 ns/op               0 B/op          0 allocs/op
 PASS
-ok      github.com/shanehowearth/algorithms/gga/insertion       143.581s
+ok      github.com/shanehowearth/algorithms/sorting/insertion       143.581s
 goos: linux
 goarch: amd64
-pkg: github.com/shanehowearth/algorithms/gga/merge
+pkg: github.com/shanehowearth/algorithms/sorting/merge
 BenchmarkSort-4            10000           1285258 ns/op         1125253 B/op      19998 allocs/op
 PASS
-ok      github.com/shanehowearth/algorithms/gga/merge   15.358s
+ok      github.com/shanehowearth/algorithms/sorting/merge   15.358s
 goos: linux
 goarch: amd64
-pkg: github.com/shanehowearth/algorithms/gga/quick
+pkg: github.com/shanehowearth/algorithms/sorting/quick
 BenchmarkSort-4            10000            580194 ns/op               0 B/op          0 allocs/op
 PASS
-ok      github.com/shanehowearth/algorithms/gga/quick   8.218s
+ok      github.com/shanehowearth/algorithms/sorting/quick   8.218s
 ```

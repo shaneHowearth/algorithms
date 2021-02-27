@@ -1,16 +1,15 @@
-package bubble_test
+package heap_test
 
 import (
-	"fmt"
 	"math/rand"
 	"testing"
 	"time"
 
 	"github.com/bmizerany/assert"
-	"github.com/shanehowearth/algorithms/gga/bubble"
+	"github.com/shanehowearth/algorithms/sorting/heap"
 )
 
-func TestBubble(t *testing.T) {
+func TestHeap(t *testing.T) {
 	testcases := map[string]struct {
 		before []int
 		after  []int
@@ -30,10 +29,10 @@ func TestBubble(t *testing.T) {
 	}
 	for name, tc := range testcases {
 		t.Run(name, func(t *testing.T) {
-			bubble.Sort(tc.before)
+			heap.Sort(tc.before)
 			assert.Equal(t, len(tc.after), len(tc.before), "Array lengths do not match")
 			for idx := range tc.after {
-				assert.Equalf(t, tc.after[idx], tc.before[idx], "Array indicies at %d did not match", idx)
+				assert.Equalf(t, tc.after[idx], tc.before[idx], "Array indicies at %d did not match %v", idx, tc.before)
 			}
 		})
 	}
@@ -41,13 +40,13 @@ func TestBubble(t *testing.T) {
 
 func init() {
 	rand.Seed(time.Now().UTC().UnixNano())
-	fmt.Println("rand seeded")
 }
+
 func BenchmarkSort(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		b.StopTimer()
 		input := rand.Perm(b.N)
 		b.StartTimer()
-		bubble.Sort(input)
+		heap.Sort(input)
 	}
 }
