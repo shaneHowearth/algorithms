@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/bmizerany/assert"
 	"github.com/shanehowearth/algorithms/sorting/bubble"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestBubble(t *testing.T) {

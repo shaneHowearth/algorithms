@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/bmizerany/assert"
 	"github.com/shanehowearth/algorithms/sorting/heap"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestHeap(t *testing.T) {

@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/bmizerany/assert"
 	"github.com/shanehowearth/algorithms/sorting/insertion"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestInsertion(t *testing.T) {

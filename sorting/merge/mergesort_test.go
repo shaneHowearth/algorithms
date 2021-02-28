@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/bmizerany/assert"
 	"github.com/shanehowearth/algorithms/sorting/merge"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestMerge(t *testing.T) {
