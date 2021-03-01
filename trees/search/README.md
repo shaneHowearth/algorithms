@@ -7,22 +7,22 @@ the left, and less than any keys in subtrees on the right."
 # Metrics
 <table>
     <tr>
-        <td>Name</td>
-        <td colspan="2">Space</td>
-        <td colspan="2">Search</td>
-        <td colspan="2">Insert</td>
-        <td colspan="2">Delete</td>
+        <th>Name</th>
+        <th colspan="2" style="text-align:center">Space</th>
+        <th colspan="2" style="text-align:center">Search</th>
+        <th colspan="2" style="text-align:center">Insert</th>
+        <th colspan="2" style="text-align:center">Delete</th>
     </tr>
     <tr>
         <td></td>
-        <td>Average</td>
-        <td>Worst Case</td>
-        <td>Average</td>
-        <td>Worst Case</td>
-        <td>Average</td>
-        <td>Worst Case</td>
-        <td>Average</td>
-        <td>Worst Case</td>
+        <th style="text-align:center">Average</th>
+        <th style="text-align:center">Worst Case</th>
+        <th style="text-align:center">Average</th>
+        <th style="text-align:center">Worst Case</th>
+        <th style="text-align:center">Average</th>
+        <th style="text-align:center">Worst Case</th>
+        <th style="text-align:center">Average</th>
+        <th style="text-align:center">Worst Case</th>
     </tr>
     <tr>
         <td>2-3</td>
@@ -124,7 +124,7 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td>binary_search</td>
+        <td>binary (BST)</td>
         <td>O(n)</td>
         <td>O(n)</td>
         <td>O(log n)</td>
