@@ -224,19 +224,16 @@ func TestDelete(t *testing.T) {
 	}
 	for name, tc := range testcases {
 		t.Run(name, func(t *testing.T) {
-			// fmt.Println("#################################################")
 			bt := binary.Tree{}
-			// fmt.Println("BEGIN: ", bt)
+
 			// Build the tree
 			for idx := range tc.beforeKeys {
 				err := bt.Insert(tc.beforeKeys[idx], tc.vals[idx])
 				assert.Nil(t, err, "Did not expect an error inserting K: %d V: %v", tc.beforeKeys[idx], tc.vals[idx])
 			}
 
-			// fmt.Println("POST: ", bt)
 			// Call Delete
 			err := bt.Delete(tc.toDelete)
-			// fmt.Println("AFTER: ", bt)
 			if tc.err != nil {
 				assert.NotNil(t, err, "was expecting an error")
 
@@ -246,8 +243,6 @@ func TestDelete(t *testing.T) {
 			}
 
 			toVisit := []*binary.Node{bt.Root}
-			// fmt.Printf("toVisit: %#v\n", toVisit)
-			size := 0
 			keys := map[int]bool{}
 			vals := map[interface{}]bool{}
 			visited := map[*binary.Node]bool{}
@@ -255,9 +250,7 @@ func TestDelete(t *testing.T) {
 
 			// Walk the tree to gather metrics on it
 			for len(toVisit) != 0 {
-				fmt.Println(toVisit)
 				n := toVisit[0]
-				// fmt.Printf("N: %#v\n", n)
 				// If the node is nil we break
 				if n == nil {
 					break
@@ -273,12 +266,6 @@ func TestDelete(t *testing.T) {
 				visited[n] = true
 				keys[n.Key] = true
 				vals[n.Value] = true
-				// track size in case the 'set' nature of the tree has been
-				// violated
-				size++
-				if size > 50 {
-					assert.FailNow(t, "size greater than 50`")
-				}
 
 				toVisit = toVisit[1:]
 
@@ -290,12 +277,9 @@ func TestDelete(t *testing.T) {
 				}
 
 			}
-			// fmt.Println(size)
 
 			// Check the number of nodes, keys, and vals is what is expected
-			assert.Equalf(t, tc.size, size, "got wrong number of nodes after deletion, expected %d, got %d ", tc.size, size)
 			assert.Equalf(t, tc.size, len(keys), "got wrong number of keys after deletion, expected %d, got %d ", tc.size, len(keys))
-			// assert.Equalf(t, tc.size, len(vals), "got wrong number of vals after deletion, expected %d, got %d ", tc.size, len(vals))
 
 			// check that keys contains an instance of each possible key
 			for _, val := range tc.afterKeys {
@@ -307,7 +291,6 @@ func TestDelete(t *testing.T) {
 			for k := range keys {
 				assert.Containsf(t, tc.afterKeys, k, "key %d not found in expected keys after deletion", k)
 			}
-			fmt.Println(keys)
 
 			// check that vals contains an instance of each possible val
 			// for idx := range tc.vals {

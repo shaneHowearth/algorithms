@@ -66,14 +66,12 @@ func (t *Tree) Insert(key int, val interface{}) error {
 
 // Delete -
 func (t *Tree) Delete(key int) error {
-	fmt.Println("#### Delete called with key", key)
-	fmt.Println("###", t)
-	fmt.Println("###", t.Root)
 	// Nothing to delete
 	if t.Root == nil {
 		return fmt.Errorf("no root")
 	}
 
+	// Root is a special case
 	if key == t.Root.Key {
 		// No children
 		if t.Root.Left == nil && t.Root.Right == nil {
@@ -89,19 +87,17 @@ func (t *Tree) Delete(key int) error {
 			t.Root = t.Root.Right
 			return nil
 		}
-		fmt.Println("### Two children")
-		// Two children :\
+		// Two children
 		// Find the max in the left hand branch
 		parent, replacement := findMax(t.Root.Left)
 		if parent == replacement {
-			fmt.Println("Parent == Replacement", parent, replacement, t.Root)
 			// t.Root.Left has no .Right
 			replacement.Right = t.Root.Right
 			t.Root = replacement
 			return nil
 		}
-		// Delete and update pointers
-		// replacement left becomes tmpParent's right
+		// Delete and update nodes
+		// replacement left becomes parent's right
 		parent.Right = replacement.Left
 		// deleted nodes right becomes replacement's right
 		replacement.Right = t.Root.Right
@@ -112,16 +108,12 @@ func (t *Tree) Delete(key int) error {
 		return nil
 	}
 
-	fmt.Println("#### Setting node ans parent to root")
 	node := t.Root
 	parent := t.Root
 	for {
-		fmt.Println("#### infinite loop", node, parent)
 		if key == node.Key {
-			fmt.Println("Found the key")
+			// node has no children, update the correct parent node pointer
 			if node.Left == nil && node.Right == nil {
-				fmt.Println("No children")
-				// no children, update the correct parent pointer
 				if parent.Left.Key == key {
 					parent.Left = nil
 				} else {
@@ -134,30 +126,20 @@ func (t *Tree) Delete(key int) error {
 				return nil
 			}
 			if node.Left != nil && node.Right != nil {
-				fmt.Println("Node Left")
 				// Find the min child
 				tmpParent, replacement := findMin(node.Right)
-				fmt.Println("Parent, replacement", tmpParent.Key, replacement.Key)
-				// Delete and update pointers
-				// replacement.Left = node.Left
-				// deleted nodes right becomes replacement's right
-				// if node.Right != replacement {
-				// replacement.Right = node.Right
-				// }
 				// deleted nodes left becomes replacement's left
 				replacement.Left = node.Left
 				// Move replacement to where the deleted node was
 				if parent.Right == node {
 					parent.Right = tmpParent
 				} else {
-					parent.Left = replacement
+					parent.Left = tmpParent
 				}
 				return nil
 			}
 
-			fmt.Println("#### Node right")
 			tmpParent, replacement := findMin(node.Left)
-			fmt.Println(tmpParent, replacement)
 			// Delete and update pointers
 			// replacement left becomes tmpParent's right
 			tmpParent.Left = replacement.Right
@@ -196,6 +178,7 @@ func (t *Tree) Delete(key int) error {
 	}
 }
 
+// Find the child with the max key below the supplied node
 func findMax(tmp *Node) (*Node, *Node) {
 	tmpParent := tmp
 	max := tmp
@@ -207,6 +190,7 @@ func findMax(tmp *Node) (*Node, *Node) {
 	return tmpParent, max
 }
 
+// Find the child with the min key below the supplied node
 func findMin(tmp *Node) (*Node, *Node) {
 	tmpParent := tmp
 	min := tmp
