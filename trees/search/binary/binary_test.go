@@ -2,12 +2,18 @@ package binary_test
 
 import (
 	"fmt"
+	"math/rand"
 	"sort"
 	"testing"
+	"time"
 
 	"github.com/shanehowearth/algorithms/trees/search/binary"
 	"github.com/stretchr/testify/assert"
 )
+
+/*
+Validity tests - ensure that the code behaves as expected.
+*/
 
 func TestSearch(t *testing.T) {
 	bt := binary.Tree{}
@@ -59,7 +65,7 @@ func TestInsert(t *testing.T) {
 	}{
 		"Single node": {
 			keys: []int{21},
-			vals: []interface{}{"Test"},
+			vals: []interface{}{"Test 21"},
 			size: 1,
 		},
 		"Zero node": {},
@@ -84,11 +90,11 @@ func TestInsert(t *testing.T) {
 			bt := binary.Tree{}
 			// fill the tree with nodes
 			for idx := range tc.keys {
-				err := bt.Insert(tc.keys[idx], tc.vals[idx])
+				err := bt.Insert(tc.keys[idx], fmt.Sprintf("Test %d", tc.keys[idx]))
 				assert.Nil(t, err, "Did not expect an error inserting K: %d V: %v", tc.keys[idx], tc.vals[idx])
 			}
 			toVisit := []*binary.Node{bt.Root}
-			size := 0
+			visited := map[*binary.Node]bool{}
 			keys := map[int]bool{}
 			vals := map[interface{}]bool{}
 
@@ -101,9 +107,10 @@ func TestInsert(t *testing.T) {
 				}
 				keys[n.Key] = true
 				vals[n.Value] = true
-				// track size in case the 'set' nature of the tree has been
-				// violated
-				size++
+				if visited[n] {
+					break
+				}
+				visited[n] = true
 
 				toVisit = toVisit[1:]
 
@@ -117,7 +124,6 @@ func TestInsert(t *testing.T) {
 			}
 
 			// Check the number of nodes, keys, and vals is what is expected
-			assert.Equalf(t, tc.size, size, "got wrong number of nodes for insertion, expected %d, got %d ", tc.size, size)
 			assert.Equalf(t, tc.size, len(keys), "got wrong number of keys for insertion, expected %d, got %d ", tc.size, len(keys))
 			assert.Equalf(t, tc.size, len(vals), "got wrong number of keys for insertion, expected %d, got %d ", tc.size, len(vals))
 
@@ -149,7 +155,8 @@ func TestDelete(t *testing.T) {
 	testcases := map[string]struct {
 		beforeKeys []int
 		afterKeys  []int
-		vals       []interface{}
+		beforeVals []interface{}
+		afterVals  []interface{}
 		size       int
 		toDelete   int
 		err        error
@@ -157,14 +164,14 @@ func TestDelete(t *testing.T) {
 		"Single node, no deletion": {
 			beforeKeys: []int{21},
 			afterKeys:  []int{21},
-			vals:       []interface{}{"Test"},
+			beforeVals: []interface{}{"Test"},
 			size:       1,
 			toDelete:   55,
 		},
 		"Delete Single node": {
 			beforeKeys: []int{21},
 			afterKeys:  []int{},
-			vals:       []interface{}{"Test"},
+			beforeVals: []interface{}{"Test"},
 			size:       0,
 			toDelete:   21,
 		},
@@ -175,49 +182,49 @@ func TestDelete(t *testing.T) {
 		"Eight node, no delete": {
 			beforeKeys: []int{88, 65, 92, 54, 80, 76, 82, 81},
 			afterKeys:  []int{88, 65, 92, 54, 80, 76, 82, 81},
-			vals:       []interface{}{"Test 88", "Test 65", "Test 92", "Test 54", "Test 80", "Test 76", "Test 82", "Test 81"},
+			beforeVals: []interface{}{"Test 88", "Test 65", "Test 92", "Test 54", "Test 80", "Test 76", "Test 82", "Test 81"},
 			size:       8,
 			toDelete:   55,
 		},
 		"Delete Root": {
 			beforeKeys: []int{88, 65, 92, 54, 80, 76, 82, 81},
 			afterKeys:  []int{65, 92, 54, 80, 76, 82, 81},
-			vals:       []interface{}{"Test 88", "Test 65", "Test 92", "Test 54", "Test 80", "Test 76", "Test 82", "Test 81"},
+			beforeVals: []interface{}{"Test 88", "Test 65", "Test 92", "Test 54", "Test 80", "Test 76", "Test 82", "Test 81"},
 			size:       7,
 			toDelete:   88,
 		},
 		"Delete Eight node": {
 			beforeKeys: []int{88, 65, 92, 54, 80, 76, 82, 81},
 			afterKeys:  []int{88, 65, 92, 80, 76, 82, 81},
-			vals:       []interface{}{"Test 88", "Test 65", "Test 92", "Test 54", "Test 80", "Test 76", "Test 82", "Test 81"},
+			beforeVals: []interface{}{"Test 88", "Test 65", "Test 92", "Test 54", "Test 80", "Test 76", "Test 82", "Test 81"},
 			size:       7,
 			toDelete:   54,
 		},
 		"Delete Eight node replacement is a direct child": {
 			beforeKeys: []int{88, 65, 92, 54, 80, 76, 82, 81},
 			afterKeys:  []int{88, 65, 92, 54, 76, 82, 81},
-			vals:       []interface{}{"Test 88", "Test 65", "Test 92", "Test 54", "Test 80", "Test 76", "Test 82", "Test 81"},
+			beforeVals: []interface{}{"Test 88", "Test 65", "Test 92", "Test 54", "Test 80", "Test 76", "Test 82", "Test 81"},
 			size:       7,
 			toDelete:   80,
 		},
 		"Delete Eight node replacement is not a direct child": {
 			beforeKeys: []int{88, 65, 92, 54, 80, 76, 82, 81},
 			afterKeys:  []int{88, 92, 54, 80, 76, 82, 81},
-			vals:       []interface{}{"Test 88", "Test 65", "Test 92", "Test 54", "Test 80", "Test 76", "Test 82", "Test 81"},
+			beforeVals: []interface{}{"Test 88", "Test 65", "Test 92", "Test 54", "Test 80", "Test 76", "Test 82", "Test 81"},
 			size:       7,
 			toDelete:   65,
 		},
 		"Delete Eight tree is a single branch": {
 			beforeKeys: []int{54, 65, 76, 80, 81, 82, 88, 92},
 			afterKeys:  []int{88, 92, 54, 80, 65, 82, 81},
-			vals:       []interface{}{"Test 88", "Test 65", "Test 92", "Test 54", "Test 80", "Test 76", "Test 82", "Test 81"},
+			beforeVals: []interface{}{"Test 88", "Test 65", "Test 92", "Test 54", "Test 80", "Test 76", "Test 82", "Test 81"},
 			size:       7,
 			toDelete:   76,
 		},
 		"Delete Nine right tree is a multi branch": {
 			beforeKeys: []int{65, 76, 75, 80, 54, 81, 82, 58, 92, 77, 53},
 			afterKeys:  []int{92, 54, 75, 58, 80, 65, 82, 81, 77, 53},
-			vals:       []interface{}{"Test 88", "Test 88", "Test 88", "Test 65", "Test 92", "Test 54", "Test 80", "Test 76", "Test 82", "Test 81", "Test 77"},
+			beforeVals: []interface{}{"Test 88", "Test 88", "Test 88", "Test 65", "Test 92", "Test 54", "Test 80", "Test 76", "Test 82", "Test 81", "Test 77"},
 			size:       10,
 			toDelete:   76,
 		},
@@ -228,8 +235,8 @@ func TestDelete(t *testing.T) {
 
 			// Build the tree
 			for idx := range tc.beforeKeys {
-				err := bt.Insert(tc.beforeKeys[idx], tc.vals[idx])
-				assert.Nil(t, err, "Did not expect an error inserting K: %d V: %v", tc.beforeKeys[idx], tc.vals[idx])
+				err := bt.Insert(tc.beforeKeys[idx], tc.beforeVals[idx])
+				assert.Nil(t, err, "Did not expect an error inserting K: %d V: %v", tc.beforeKeys[idx], tc.beforeVals[idx])
 			}
 
 			// Call Delete
@@ -246,7 +253,6 @@ func TestDelete(t *testing.T) {
 			keys := map[int]bool{}
 			vals := map[interface{}]bool{}
 			visited := map[*binary.Node]bool{}
-			lap := false
 
 			// Walk the tree to gather metrics on it
 			for len(toVisit) != 0 {
@@ -256,12 +262,7 @@ func TestDelete(t *testing.T) {
 					break
 				}
 				if visited[n] {
-					if lap {
-
-						break
-					} else {
-						lap = true
-					}
+					break
 				}
 				visited[n] = true
 				keys[n.Key] = true
@@ -292,15 +293,71 @@ func TestDelete(t *testing.T) {
 				assert.Containsf(t, tc.afterKeys, k, "key %d not found in expected keys after deletion", k)
 			}
 
-			// check that vals contains an instance of each possible val
-			// for idx := range tc.vals {
-			// assert.True(t, vals[tc.vals[idx]], "expected %v to be in vals after deletion", tc.vals[idx])
-			// }
-
 			// check that each val should have been created
 			for k := range vals {
-				assert.Containsf(t, tc.vals, k, "val %v not found in expected vals after deletion", k)
+				assert.Containsf(t, tc.beforeVals, k, "val %v not found in expected vals after deletion", k)
 			}
 		})
+	}
+}
+
+/*
+Benchmark tests - testing the time that it takes for the given operations to occur.
+*/
+
+func BenchmarkSearch(b *testing.B) {
+	rand.Seed(time.Now().UTC().UnixNano())
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+		// Build the input
+		bt := binary.Tree{}
+		input := rand.Perm(b.N)
+		for idx := range input {
+			input[idx] = input[idx] * rand.Int()
+			bt.Insert(input[i], nil)
+		}
+		toFind := rand.Int()
+
+		b.StartTimer()
+		// Run the method
+		bt.Search(toFind)
+	}
+}
+
+func BenchmarkInsertion(b *testing.B) {
+	rand.Seed(time.Now().UTC().UnixNano())
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+		// Build the input
+		bt := binary.Tree{}
+		input := rand.Perm(b.N)
+		for idx := range input {
+			input[idx] = input[idx] * rand.Int()
+		}
+
+		b.StartTimer()
+		// Run the method
+		for idx := range input {
+			bt.Insert(input[idx], nil)
+		}
+	}
+}
+
+func BenchmarkDeletion(b *testing.B) {
+	rand.Seed(time.Now().UTC().UnixNano())
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+		// Build the input
+		bt := binary.Tree{}
+		input := rand.Perm(b.N)
+		for idx := range input {
+			input[idx] = input[idx] * rand.Int()
+			bt.Insert(input[i], nil)
+		}
+		toDelete := rand.Int()
+
+		b.StartTimer()
+		// Run the method
+		bt.Delete(toDelete)
 	}
 }

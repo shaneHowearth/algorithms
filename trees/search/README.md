@@ -256,3 +256,21 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
 </table>
+
+## Benchmarks
+```
+goos: linux
+goarch: amd64
+pkg: github.com/shanehowearth/algorithms/trees/search/binary
+cpu: Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz
+BenchmarkSearch
+BenchmarkSearch-4         769651              7188 ns/op             590 B/op
+4 allocs/op
+BenchmarkInsertion
+BenchmarkInsertion-4       10000           1274600 ns/op          480000 B/op
+10000 allocs/op
+BenchmarkDeletion
+BenchmarkDeletion-4       100000               272.2 ns/op             0 B/op
+0 allocs/op
+PASS
+```
