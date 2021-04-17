@@ -25,7 +25,8 @@ the left, and less than any keys in subtrees on the right."
         <th style="text-align:center">Worst Case</th>
     </tr>
     <tr>
-        <td>2-3</td>
+        <td><a href="https://en.wikipedia.org/wiki/2%E2%80%933_tree"
+        title="2-3 tree, Wikipedia">2-3 tree</a></td>
         <td>O(n)</td>
         <td>O(n)</td>
         <td>O(log n)</td>
@@ -36,7 +37,8 @@ the left, and less than any keys in subtrees on the right."
         <td>O(log n)</td>
     </tr>
     <tr>
-        <td>2-3-4</td>
+        <td><a href="https://en.wikipedia.org/wiki/2%E2%80%933%E2%80%934_tree"
+        title="2-3-4 tree, Wikipedia">2-3-4 tree</a></td>
         <td></td>
         <td></td>
         <td></td>
@@ -47,7 +49,8 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td>aa</td>
+        <td><a href="https://en.wikipedia.org/wiki/AA_tree"
+        title="AA tree, Wikipedia">AA tree</a></td>
         <td></td>
         <td></td>
         <td></td>
@@ -58,7 +61,8 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td>ab</td>
+        <td><a href="https://en.wikipedia.org/wiki/AB_tree"
+        title="AB tree, Wikipedia">AB tree</a></td>
         <td></td>
         <td></td>
         <td></td>
@@ -69,7 +73,8 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td>avl</td>
+        <td><a href="https://en.wikipedia.org/wiki/AVL_tree"
+        title="AVL tree, Wikipedia">AVL tree</a></td>
         <td></td>
         <td></td>
         <td></td>
@@ -80,7 +85,8 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td>b</td>
+        <td><a href="https://en.wikipedia.org/wiki/B-tree"
+        title="B tree, Wikipedia">B tree</a></td>
         <td></td>
         <td></td>
         <td></td>
@@ -91,7 +97,8 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td>b_plus</td>
+        <td><a href="https://en.wikipedia.org/wiki/B%2B_tree"
+        title="B+ tree, Wikipedia">B+ tree</a></td>
         <td></td>
         <td></td>
         <td></td>
@@ -102,7 +109,8 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td>b_star</td>
+        <td><a href="https://en.wikipedia.org/wiki/B*"
+        title="B* tree, Wikipedia">B* tree</a></td>
         <td></td>
         <td></td>
         <td></td>
@@ -113,7 +121,8 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td>b_x</td>
+        <td><a href="https://en.wikipedia.org/wiki/Bx-tree"
+        title="Bˣ tree, Wikipedia">Bˣ tree</a></td>
         <td></td>
         <td></td>
         <td></td>
@@ -124,7 +133,8 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td>binary (BST)</td>
+        <td><a href="https://en.wikipedia.org/wiki/Binary_tree"
+        title="Binary tree, Wikipedia">Binary tree</a></td>
         <td>O(n)</td>
         <td>O(n)</td>
         <td>O(log n)</td>
@@ -135,7 +145,8 @@ the left, and less than any keys in subtrees on the right."
         <td>O(n)</td>
     </tr>
     <tr>
-        <td>dancing</td>
+        <td><a href="https://en.wikipedia.org/wiki/Dancing_tree"
+        title="Dancing tree, Wikipedia">Dancing tree</a></td>
         <td></td>
         <td></td>
         <td></td>
@@ -146,7 +157,8 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td>htree</td>
+        <td><a href="https://en.wikipedia.org/wiki/HTree"
+        title="H tree, Wikipedia">H tree</a></td>
         <td></td>
         <td></td>
         <td></td>
@@ -157,7 +169,8 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td>interval</td>
+        <td><a href="https://en.wikipedia.org/wiki/Interval_tree"
+        title="Interval tree, Wikipedia">Interval tree</a></td>
         <td></td>
         <td></td>
         <td></td>
@@ -168,7 +181,8 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td>order_statistic</td>
+        <td><a href="https://en.wikipedia.org/wiki/Order_statistic_tree"
+        title="Order statistic tree, Wikipedia">Order statistic tree</a></td>
         <td></td>
         <td></td>
         <td></td>
@@ -191,7 +205,8 @@ the left, and less than any keys in subtrees on the right."
         <td>O(log n)</td>
     </tr>
     <tr>
-        <td>scapegoat</td>
+        <td><a href="https://en.wikipedia.org/wiki/Scapegoat_tree"
+        title="Scapegoat tree, Wikipedia">Scapegoat tree</a></td>
         <td></td>
         <td></td>
         <td></td>
@@ -202,7 +217,8 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td>splay</td>
+        <td><a href="https://en.wikipedia.org/wiki/Splay_tree"
+        title="Splay tree, Wikipedia">Splay tree</a></td>
         <td></td>
         <td></td>
         <td></td>
@@ -213,7 +229,8 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td>t</td>
+        <td><a href="https://en.wikipedia.org/wiki/T-tree"
+        title="T tree, Wikipedia">T tree</a></td>
         <td></td>
         <td></td>
         <td></td>
@@ -224,7 +241,8 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td>treap</td>
+        <td><a href="https://en.wikipedia.org/wiki/Treap"
+        title="Treap, Wikipedia">Treap</a></td>
         <td></td>
         <td></td>
         <td></td>
@@ -235,7 +253,8 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td>ub</td>
+        <td><a href="https://en.wikipedia.org/wiki/UB-tree"
+        title="UB tree, Wikipedia">UB tree</a></td>
         <td></td>
         <td></td>
         <td></td>
@@ -246,7 +265,8 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td>weight_balanced</td>
+        <td><a href="https://en.wikipedia.org/wiki/Weight-balanced_tree"
+        title="Weight-balanced tree, Wikipedia">Weight-balanced tree</a></td>
         <td></td>
         <td></td>
         <td></td>
