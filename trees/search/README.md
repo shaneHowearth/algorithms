@@ -26,14 +26,14 @@ the left, and less than any keys in subtrees on the right."
     </tr>
     <tr>
         <td>2-3</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
     </tr>
     <tr>
         <td>2-3-4</td>

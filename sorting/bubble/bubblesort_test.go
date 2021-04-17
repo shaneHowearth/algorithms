@@ -1,7 +1,6 @@
 package bubble_test
 
 import (
-	"fmt"
 	"math/rand"
 	"testing"
 	"time"
@@ -41,7 +40,6 @@ func TestBubble(t *testing.T) {
 
 func init() {
 	rand.Seed(time.Now().UTC().UnixNano())
-	fmt.Println("rand seeded")
 }
 func BenchmarkSort(b *testing.B) {
 	for i := 0; i < b.N; i++ {
