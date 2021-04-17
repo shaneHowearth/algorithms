@@ -179,8 +179,8 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td>[Red Black](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree
-        "Wikipedia")</td>
+        <td><a href="https://en.wikipedia.org/wiki/Red%E2%80%93black_tree"
+        title="Wikipedia">Red Black</a></td>
         <td>O(n)</td>
         <td>O(n)</td>
         <td>O(log n)</td>
