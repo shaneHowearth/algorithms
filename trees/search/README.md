@@ -39,29 +39,29 @@ the left, and less than any keys in subtrees on the right."
     <tr>
         <td><a href="https://en.wikipedia.org/wiki/2%E2%80%933%E2%80%934_tree"
         title="2-3-4 tree, Wikipedia">2-3-4 tree</a></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
     </tr>
     <tr>
         <td><a href="https://en.wikipedia.org/wiki/AA_tree"
         title="AA tree, Wikipedia">AA tree</a></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
     </tr>
     <tr>
-        <td><a href="https://en.wikipedia.org/wiki/AB_tree"
+        <td><a href="https://en.wikipedia.org/wiki/(a,b)-tree"
         title="AB tree, Wikipedia">AB tree</a></td>
         <td></td>
         <td></td>
@@ -75,41 +75,41 @@ the left, and less than any keys in subtrees on the right."
     <tr>
         <td><a href="https://en.wikipedia.org/wiki/AVL_tree"
         title="AVL tree, Wikipedia">AVL tree</a></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
     </tr>
     <tr>
         <td><a href="https://en.wikipedia.org/wiki/B-tree"
         title="B tree, Wikipedia">B tree</a></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
     </tr>
     <tr>
         <td><a href="https://en.wikipedia.org/wiki/B%2B_tree"
         title="B+ tree, Wikipedia">B+ tree</a></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(log n)</td>
+        <td>O(log n + log L)</td>
+        <td>O(log n)</td>
+        <td>O(M*log n + log L)</td>
+        <td>O(log n)</td>
+        <td>O(M*log n + log L)</td>
     </tr>
     <tr>
-        <td><a href="https://en.wikipedia.org/wiki/B*"
+        <td><a href="https://en.wikipedia.org/wiki/B-tree#Variants"
         title="B* tree, Wikipedia">B* tree</a></td>
         <td></td>
         <td></td>
@@ -133,7 +133,7 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td><a href="https://en.wikipedia.org/wiki/Binary_tree"
+        <td><a href="https://en.wikipedia.org/wiki/Binary_search_tree"
         title="Binary tree, Wikipedia">Binary tree</a></td>
         <td>O(n)</td>
         <td>O(n)</td>
@@ -207,26 +207,26 @@ the left, and less than any keys in subtrees on the right."
     <tr>
         <td><a href="https://en.wikipedia.org/wiki/Scapegoat_tree"
         title="Scapegoat tree, Wikipedia">Scapegoat tree</a></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>amortised O(log n)</td>
+        <td>O(log n)</td>
+        <td>amortised O(log n)</td>
     </tr>
     <tr>
         <td><a href="https://en.wikipedia.org/wiki/Splay_tree"
         title="Splay tree, Wikipedia">Splay tree</a></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>amortised O(log n)</td>
+        <td>amortised O(log n)</td>
+        <td>amortised O(log n)</td>
+        <td>amortised O(log n)</td>
+        <td>amortised O(log n)</td>
+        <td>amortised O(log n)</td>
     </tr>
     <tr>
         <td><a href="https://en.wikipedia.org/wiki/T-tree"
@@ -243,14 +243,14 @@ the left, and less than any keys in subtrees on the right."
     <tr>
         <td><a href="https://en.wikipedia.org/wiki/Treap"
         title="Treap, Wikipedia">Treap</a></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(log n)</td>
+        <td>O(n)</td>
+        <td>O(log n)</td>
+        <td>O(n)</td>
+        <td>O(log n)</td>
+        <td>O(n)</td>
     </tr>
     <tr>
         <td><a href="https://en.wikipedia.org/wiki/UB-tree"
