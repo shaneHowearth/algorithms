@@ -179,15 +179,16 @@ the left, and less than any keys in subtrees on the right."
         <td></td>
     </tr>
     <tr>
-        <td>red_black</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>[Red Black](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree
+        "Wikipedia")</td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
     </tr>
     <tr>
         <td>scapegoat</td>
