@@ -23,6 +23,7 @@ it has a smallest possible height—a heap with N nodes and for each node a
 branches always has logٰₐ N height."
 
 # Metrics
+- 2-3 Heap
 - binary
 - binomial
 - brodal
@@ -32,3 +33,182 @@ branches always has logٰₐ N height."
 - skew
 - van_emde_boas
 - weak
+<table>
+    <tr>
+        <th>Name</th>
+        <th colspan="2" style="text-align:center">Space</th>
+        <th colspan="2" style="text-align:center">Search</th>
+        <th colspan="2" style="text-align:center">Insert</th>
+        <th colspan="2" style="text-align:center">Find-min</th>
+        <th colspan="2" style="text-align:center">Delete-min</th>
+    </tr>
+    <tr>
+        <td></td>
+        <th style="text-align:center">Average</th>
+        <th style="text-align:center">Worst Case</th>
+        <th style="text-align:center">Average</th>
+        <th style="text-align:center">Worst Case</th>
+        <th style="text-align:center">Average</th>
+        <th style="text-align:center">Worst Case</th>
+        <th style="text-align:center">Average</th>
+        <th style="text-align:center">Worst Case</th>
+        <th style="text-align:center">Average</th>
+        <th style="text-align:center">Worst Case</th>
+    </tr>
+    <tr>
+        <td><a href=""https://en.wikipedia.org/wiki/2%E2%80%933_heap
+        title="2-3 heap, Wikipedia">2-3 Heap</a></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><a href="https://en.wikipedia.org/wiki/Binary_heap"
+        title="Binary heap, Wikipedia">Binary Heap</a></td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(1)</td>
+        <td>O(log n)</td>
+        <td>O(1)</td>
+        <td>O(1)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+    </tr>
+    <tr>
+        <td><a href="https://en.wikipedia.org/wiki/Binomial_heap"
+        title="Binomial heap, Wikipedia">Binomial Heap</a></td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(1)</td>
+        <td>O(log n)</td>
+        <td>O(1)</td>
+        <td>O(1)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+    </tr>
+    <tr>
+        <td><a href="https://en.wikipedia.org/wiki/Brodal_queue""
+        title="Brodal heap, Wikipedia">Brodal Heap</a></td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(1)</td>
+        <td>O(log n)</td>
+        <td>O(1)</td>
+        <td>O(1)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+    </tr>
+    <tr>
+        <td><a href="https://en.wikipedia.org/wiki/Fibonacci_heap"
+        title="Fibonacci heap, Wikipedia">Fibonacci Heap</a></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><a href="https://en.wikipedia.org/wiki/Leftist_tree"
+        title="Leftist tree, Wikipedia">Leftist tree</a></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><a href="https://en.wikipedia.org/wiki/Pairing_heap
+        title="Pairing heap, Wikipedia">Pairing Heap</a></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><a href="https://en.wikipedia.org/wiki/Skew_heap"
+        title="Skew heap, Wikipedia">Skew Heap</a></td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(1)</td>
+        <td>O(log n)</td>
+        <td>O(1)</td>
+        <td>O(1)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+    </tr>
+    <tr>
+        <td><a href="https://en.wikipedia.org/wiki/Binary_heap"
+        title="Binary heap, Wikipedia">Binary Heap</a></td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(1)</td>
+        <td>O(log n)</td>
+        <td>O(1)</td>
+        <td>O(1)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+    </tr>
+    <tr>
+        <td><a href="https://en.wikipedia.org/wiki/Van_Emde_Boas_tree
+        title="Van Emde Boas tree, Wikipedia">Van Emde Boas tree</a></td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+        <td>O(1)</td>
+        <td>O(log n)</td>
+        <td>O(1)</td>
+        <td>O(1)</td>
+        <td>O(log n)</td>
+        <td>O(log n)</td>
+    </tr>
+    <tr>
+        <td><a href="https://en.wikipedia.org/wiki/Weak_heap
+        title="Weak heap, Wikipedia">Weak Heap</a></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+## Benchmarks
