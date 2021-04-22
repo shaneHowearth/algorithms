@@ -72,10 +72,6 @@ func (rt *Tree) RotateDirRoot(
 	return fmt.Errorf("parent's other child is nil")
 }
 
-// Insertion scenarios
-// Recurse upwards until we find root, or no violations (no red parent with red
-// children)
-
 // Insert -
 func (rt *Tree) Insert(
 	key int,
@@ -121,6 +117,9 @@ func (rt *Tree) Insert(
 
 	// Check that its insertion hasn't violated any of the RBTree conditions
 	for node != rt.Root && node.Parent.Colour == Red {
+		// Insertion scenarios
+		// Recurse upwards until we find root, or no violations (no red parent with red
+		// children)
 		// rt.Root should be Black so there is no need to check
 		// Case 1
 		if node.Parent.Parent != nil && node.Parent.Parent.Child[Left].Colour == Red && node.Parent.Parent.Child[Right].Colour == Red {
@@ -136,7 +135,6 @@ func (rt *Tree) Insert(
 		}
 
 		// Case 2
-		changeDirection := Left
 		if node == node.Parent.Child[Left] && node.Parent == node.Parent.Parent.Child[Right] {
 			// Case 2: Zigzag fix
 			// Node being inspected (X) is left child of its parent, and parent is right
@@ -146,17 +144,21 @@ func (rt *Tree) Insert(
 			// new child is the same side as X is on its (now) parent
 			// ie, both are left children, or both are right children
 			rt.RotateDirRoot(node.Parent, Right)
-			changeDirection = Right
 		} else if node == node.Parent.Child[Right] && node.Parent == node.Parent.Parent.Child[Left] {
 			rt.RotateDirRoot(node.Parent, Left)
-			changeDirection = Left
 		}
 		// Case 3
 		// X's parent A, and X's grand parent C
 		// move X to top of tree (making C and A it's direct children) and recolour
 		// recolour
 		node.Parent.Colour = 1 - node.Parent.Colour
-		rt.RotateDirRoot(node.Parent, 1-changeDirection)
+		changeDirection := Left
+		if node == node.Parent.Child[Left] {
+			changeDirection = Right
+		} else {
+			changeDirection = Left
+		}
+		rt.RotateDirRoot(node.Parent, changeDirection)
 	}
 
 	// Set the root to black
