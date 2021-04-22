@@ -155,8 +155,6 @@ func (rt *Tree) Insert(
 		changeDirection := Left
 		if node == node.Parent.Child[Left] {
 			changeDirection = Right
-		} else {
-			changeDirection = Left
 		}
 		rt.RotateDirRoot(node.Parent, changeDirection)
 	}
