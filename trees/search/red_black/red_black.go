@@ -257,3 +257,50 @@ func (rt *Tree) Search(key int) (*Node, error) {
 		cmp.l.RUnlock()
 	}
 }
+
+// Successor -
+func (rt *Tree) Successor(key int) (*Node, error) {
+	if rt.Root == nil {
+		return nil, fmt.Errorf("no nodes in the tree")
+	}
+	node, err := rt.Search(key)
+	if err != nil {
+		return nil, err
+	}
+	// WTH is the successor?
+	// if node.
+	return node, nil
+}
+
+// Predessor -
+func (rt *Tree) Predessor(key int) (*Node, error) {
+	if rt.Root == nil {
+		return nil, fmt.Errorf("no nodes in the tree")
+	}
+	node, err := rt.Search(key)
+	if err != nil {
+		return nil, err
+	}
+	// WTH is the successor?
+	// if node.
+	return node, nil
+}
+
+// WalkTree -
+func (rt *Tree) WalkTree() string {
+	nodes := []*Node{rt.Root}
+	output := []string{}
+	for len(nodes) != 0 {
+		node := nodes[0]
+		nodes = nodes[1:]
+		output = append(output, fmt.Sprintf("%d - %d\nchild[Left]: %v\nchild[Right]: %v\n", node.Key, node.Colour, node.Child[Left], node.Child[Right]))
+		if node.Child[Left] != nil {
+			nodes = append(nodes, node.Child[Left])
+		}
+		if node.Child[Right] != nil {
+			nodes = append(nodes, node.Child[Right])
+		}
+		fmt.Println()
+	}
+	return strings.Join(output, "")
+}
