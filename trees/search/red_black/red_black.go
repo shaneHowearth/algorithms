@@ -7,6 +7,7 @@ package redblack
 import (
 	"fmt"
 	"strings"
+	"sync"
 )
 
 // Tree - Red-Black Tree
@@ -30,6 +31,7 @@ type Node struct {
 	Parent *Node
 	Child  [2]*Node
 	Colour Colour
+	l      sync.RWMutex
 }
 
 // Direction -
@@ -46,10 +48,18 @@ func (rt *Tree) RotateDirRoot(
 	Parent *Node, // Parent of node that's out of place
 	dir Direction,
 ) error {
+
 	Grandparent := Parent.Parent
 	Sibling := Parent.Child[1-dir]
+	// lock the affected nodes for writing
+	Parent.l.Lock()
+
+	// unlock the nodes when the function exits
+	defer Parent.l.Unlock()
 
 	if Sibling != nil {
+		Sibling.l.Lock()
+		defer Sibling.l.Unlock()
 		C := Sibling.Child[dir]
 		Parent.Child[1-dir] = C
 		if C != nil {
@@ -59,6 +69,8 @@ func (rt *Tree) RotateDirRoot(
 		Parent.Parent = Sibling
 		Sibling.Parent = Grandparent
 		if Grandparent != nil {
+			Grandparent.l.Lock()
+			defer Grandparent.l.Unlock()
 			d := Left
 			if Parent == Grandparent.Child[Right] {
 				d = Right
@@ -171,9 +183,12 @@ func (rt *Tree) GetMax() (*Node, error) {
 	}
 	cmp := rt.Root
 	for {
+		cmp.l.RLock()
 		if cmp.Child[Right] == nil {
+			cmp.l.RUnlock()
 			return cmp, nil
 		}
+		cmp.l.RUnlock()
 	}
 }
 
@@ -184,9 +199,12 @@ func (rt *Tree) GetMin() (*Node, error) {
 	}
 	cmp := rt.Root
 	for {
+		cmp.l.RLock()
 		if cmp.Child[Left] == nil {
+			cmp.l.RUnlock()
 			return cmp, nil
 		}
+		cmp.l.RUnlock()
 	}
 }
 
@@ -197,24 +215,31 @@ func (rt *Tree) Search(key int) (*Node, error) {
 	}
 	cmp := rt.Root
 	for {
+		cmp.l.RLock()
 		if key < cmp.Key {
 			if cmp.Child[Left] != nil {
+				cmp.l.RUnlock()
 				cmp = cmp.Child[Left]
 				continue
 			} else {
+				cmp.l.RUnlock()
 				return nil, fmt.Errorf("%d not found", key)
 			}
 		}
 		if key > cmp.Key {
 			if cmp.Child[Right] != nil {
+				cmp.l.RUnlock()
 				cmp = cmp.Child[Right]
 				continue
 			} else {
+				cmp.l.RUnlock()
 				return nil, fmt.Errorf("%d not found", key)
 			}
 		}
 		if key == cmp.Key {
+			cmp.l.RUnlock()
 			return cmp, nil
 		}
+		cmp.l.RUnlock()
 	}
 }
