@@ -6,7 +6,6 @@ package redblack
 
 import (
 	"fmt"
-	"strings"
 	"sync"
 )
 
@@ -147,6 +146,8 @@ func (rt *Tree) Insert(
 		}
 
 		// Case 2
+		changeDirection := Left
+		zigzag := false
 		if node == node.Parent.Child[Left] && node.Parent == node.Parent.Parent.Child[Right] {
 			// Case 2: Zigzag fix
 			// Node being inspected (X) is left child of its parent, and parent is right
@@ -155,20 +156,33 @@ func (rt *Tree) Insert(
 			// Make X the parent of its parent, and child of its grandparent such that the
 			// new child is the same side as X is on its (now) parent
 			// ie, both are left children, or both are right children
-			rt.RotateDirRoot(node.Parent, Right)
+			changeDirection = Right
+			zigzag = true
 		} else if node == node.Parent.Child[Right] && node.Parent == node.Parent.Parent.Child[Left] {
-			rt.RotateDirRoot(node.Parent, Left)
+			changeDirection = Left
+			zigzag = true
+		}
+		if zigzag {
+			err := rt.RotateDirRoot(node.Parent, changeDirection)
+			if err != nil {
+				return fmt.Errorf("case 2: rotating %d, direction %d generated %w", node.Parent.Key, changeDirection, err)
+			}
+
 		}
 		// Case 3
 		// X's parent A, and X's grand parent C
 		// move X to top of tree (making C and A it's direct children) and recolour
 		// recolour
 		node.Parent.Colour = 1 - node.Parent.Colour
-		changeDirection := Left
 		if node == node.Parent.Child[Left] {
 			changeDirection = Right
+		} else {
+			changeDirection = Left
 		}
-		rt.RotateDirRoot(node.Parent, changeDirection)
+		err := rt.RotateDirRoot(node.Parent, changeDirection)
+		if err != nil {
+			return fmt.Errorf("case 3: rotating %d, direction %d generated %w", node.Parent.Key, changeDirection, err)
+		}
 	}
 
 	// Set the root to black
