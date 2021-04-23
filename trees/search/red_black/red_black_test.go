@@ -46,7 +46,9 @@ func TestInsert(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			rt := redblack.Tree{}
 			for i := range tc.input {
-				rt.Insert(tc.input[i], nil)
+				err := rt.Insert(tc.input[i], nil)
+
+				assert.Nil(t, err, "inserting %d generated error %v", tc.input[i], err)
 			}
 
 			nodes := []*redblack.Node{rt.Root}
