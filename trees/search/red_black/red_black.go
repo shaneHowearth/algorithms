@@ -133,7 +133,7 @@ func (rt *Tree) Insert(
 		// children)
 		// rt.Root should be Black so there is no need to check
 		// Case 1
-		if node.Parent.Parent != nil && node.Parent.Parent.Child[Left].Colour == Red && node.Parent.Parent.Child[Right].Colour == Red {
+		if node.Parent.Parent != nil && node.Parent.Parent.Child[Left] != nil && node.Parent.Parent.Child[Left].Colour == Red && node.Parent.Parent.Child[Right] != nil && node.Parent.Parent.Child[Right].Colour == Red {
 			// Case 1: Recolour fix
 			// If grandparent is black (it /should/ be) and parent's sibling is red
 			// Recolor parent and sibling from red to black, and grandparent from black to
@@ -284,23 +284,4 @@ func (rt *Tree) Predessor(key int) (*Node, error) {
 	// WTH is the successor?
 	// if node.
 	return node, nil
-}
-
-// WalkTree -
-func (rt *Tree) WalkTree() string {
-	nodes := []*Node{rt.Root}
-	output := []string{}
-	for len(nodes) != 0 {
-		node := nodes[0]
-		nodes = nodes[1:]
-		output = append(output, fmt.Sprintf("%d - %d\nchild[Left]: %v\nchild[Right]: %v\n", node.Key, node.Colour, node.Child[Left], node.Child[Right]))
-		if node.Child[Left] != nil {
-			nodes = append(nodes, node.Child[Left])
-		}
-		if node.Child[Right] != nil {
-			nodes = append(nodes, node.Child[Right])
-		}
-		fmt.Println()
-	}
-	return strings.Join(output, "")
 }
