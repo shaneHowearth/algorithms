@@ -11,6 +11,7 @@ import (
 
 // Tree - Red-Black Tree
 type Tree struct {
+	l    sync.RWMutex
 	Root *Node // Nil if tree empty
 }
 
@@ -30,7 +31,6 @@ type Node struct {
 	Parent *Node
 	Child  [2]*Node
 	Colour Colour
-	l      sync.RWMutex
 }
 
 // Direction -
@@ -47,18 +47,15 @@ func (rt *Tree) RotateDirRoot(
 	Parent *Node, // Parent of node that's out of place
 	dir Direction,
 ) error {
+	rt.l.Lock()
+	defer rt.l.Unlock()
 
+	if Parent.Parent != nil {
+	}
 	Grandparent := Parent.Parent
 	Sibling := Parent.Child[1-dir]
-	// lock the affected nodes for writing
-	Parent.l.Lock()
-
-	// unlock the nodes when the function exits
-	defer Parent.l.Unlock()
 
 	if Sibling != nil {
-		Sibling.l.Lock()
-		defer Sibling.l.Unlock()
 		C := Sibling.Child[dir]
 		Parent.Child[1-dir] = C
 		if C != nil {
@@ -68,8 +65,6 @@ func (rt *Tree) RotateDirRoot(
 		Parent.Parent = Sibling
 		Sibling.Parent = Grandparent
 		if Grandparent != nil {
-			Grandparent.l.Lock()
-			defer Grandparent.l.Unlock()
 			d := Left
 			if Parent == Grandparent.Child[Right] {
 				d = Right
@@ -192,69 +187,63 @@ func (rt *Tree) Insert(
 
 // GetMax -
 func (rt *Tree) GetMax() (*Node, error) {
+	rt.l.RLock()
+	defer rt.l.RUnlock()
 	if rt.Root == nil {
 		return nil, fmt.Errorf("no nodes in the tree")
 	}
 	cmp := rt.Root
 	for {
-		cmp.l.RLock()
 		if cmp.Child[Right] == nil {
-			cmp.l.RUnlock()
 			return cmp, nil
 		}
-		cmp.l.RUnlock()
+
 	}
 }
 
 // GetMin -
 func (rt *Tree) GetMin() (*Node, error) {
+	rt.l.RLock()
+	defer rt.l.RUnlock()
 	if rt.Root == nil {
 		return nil, fmt.Errorf("no nodes in the tree")
 	}
 	cmp := rt.Root
 	for {
-		cmp.l.RLock()
 		if cmp.Child[Left] == nil {
-			cmp.l.RUnlock()
 			return cmp, nil
 		}
-		cmp.l.RUnlock()
 	}
 }
 
 // Search -
 func (rt *Tree) Search(key int) (*Node, error) {
+	rt.l.RLock()
+	defer rt.l.RUnlock()
 	if rt.Root == nil {
 		return nil, fmt.Errorf("no nodes in the tree")
 	}
 	cmp := rt.Root
 	for {
-		cmp.l.RLock()
 		if key < cmp.Key {
 			if cmp.Child[Left] != nil {
-				cmp.l.RUnlock()
 				cmp = cmp.Child[Left]
 				continue
 			} else {
-				cmp.l.RUnlock()
 				return nil, fmt.Errorf("%d not found", key)
 			}
 		}
 		if key > cmp.Key {
 			if cmp.Child[Right] != nil {
-				cmp.l.RUnlock()
 				cmp = cmp.Child[Right]
 				continue
 			} else {
-				cmp.l.RUnlock()
 				return nil, fmt.Errorf("%d not found", key)
 			}
 		}
 		if key == cmp.Key {
-			cmp.l.RUnlock()
 			return cmp, nil
 		}
-		cmp.l.RUnlock()
 	}
 }
 
