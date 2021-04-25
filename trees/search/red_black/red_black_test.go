@@ -69,3 +69,39 @@ func TestSearch(t *testing.T) {
 		})
 	}
 }
+
+func TestGetMin(t *testing.T) {
+	testcases := map[string]struct {
+		input  []int
+		output *redblack.Node
+		err    error
+	}{}
+	for name, tc := range testcases {
+		t.Run(name, func(t *testing.T) {
+			rt := redblack.Tree{}
+			for i := range tc.input {
+				err := rt.Insert(tc.input[i], nil)
+				assert.Nil(t, err, "inserting %d generated error %v", tc.input[i], err)
+			}
+
+		})
+	}
+}
+
+func TestGetMax(t *testing.T) {
+	testcases := map[string]struct {
+		input  []int
+		output *redblack.Node
+		err    error
+	}{}
+	for name, tc := range testcases {
+		t.Run(name, func(t *testing.T) {
+			rt := redblack.Tree{}
+			for i := range tc.input {
+				err := rt.Insert(tc.input[i], nil)
+				assert.Nil(t, err, "inserting %d generated error %v", tc.input[i], err)
+			}
+
+		})
+	}
+}
