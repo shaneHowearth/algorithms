@@ -30,6 +30,7 @@ func (rt *Tree) GetMin() (*Node, error) {
 		if cmp.Child[Left] == nil {
 			return cmp, nil
 		}
+		cmp = cmp.Child[Left]
 	}
 }
 
