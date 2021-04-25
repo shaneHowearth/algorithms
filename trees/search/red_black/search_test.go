@@ -110,13 +110,31 @@ func TestGetMax(t *testing.T) {
 		input  []int
 		output *redblack.Node
 		err    error
-	}{}
+	}{
+		"simple example": {
+			input:  []int{7, 18, 3, 10, 22, 8, 11, 26},
+			output: &redblack.Node{Key: 26},
+		},
+		"no root node": {
+			err: fmt.Errorf("no nodes in the tree"),
+		},
+	}
 	for name, tc := range testcases {
 		t.Run(name, func(t *testing.T) {
 			rt := redblack.Tree{}
 			for i := range tc.input {
 				err := rt.Insert(tc.input[i], nil)
 				assert.Nil(t, err, "inserting %d generated error %v", tc.input[i], err)
+			}
+
+			node, err := rt.GetMax()
+			if tc.err == nil {
+				assert.Nil(t, err, "was not expecting an error %v", err)
+				assert.NotNil(t, node, "was expecting a node")
+				assert.Equal(t, node.Key, tc.output.Key, "wanted %d, got %d", tc.output.Key, node.Key)
+			} else {
+				assert.NotNil(t, err, "was expecting an error")
+				assert.EqualError(t, err, tc.err.Error(), "wanted %s, got %s", tc.err.Error(), err.Error())
 			}
 
 		})

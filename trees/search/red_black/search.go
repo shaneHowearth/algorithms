@@ -14,7 +14,7 @@ func (rt *Tree) GetMax() (*Node, error) {
 		if cmp.Child[Right] == nil {
 			return cmp, nil
 		}
-
+		cmp = cmp.Child[Right]
 	}
 }
 
