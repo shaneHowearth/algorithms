@@ -76,6 +76,10 @@ func TestGetMin(t *testing.T) {
 		output *redblack.Node
 		err    error
 	}{
+		"negative min": {
+			input:  []int{7, 18, 3, 10, -17, 22, 8, 11, 26},
+			output: &redblack.Node{Key: -17},
+		},
 		"simple example": {
 			input:  []int{7, 18, 3, 10, 22, 8, 11, 26},
 			output: &redblack.Node{Key: 3},
