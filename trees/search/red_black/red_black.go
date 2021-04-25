@@ -246,31 +246,3 @@ func (rt *Tree) Search(key int) (*Node, error) {
 		}
 	}
 }
-
-// Successor -
-func (rt *Tree) Successor(key int) (*Node, error) {
-	if rt.Root == nil {
-		return nil, fmt.Errorf("no nodes in the tree")
-	}
-	node, err := rt.Search(key)
-	if err != nil {
-		return nil, err
-	}
-	// WTH is the successor?
-	// if node.
-	return node, nil
-}
-
-// Predessor -
-func (rt *Tree) Predessor(key int) (*Node, error) {
-	if rt.Root == nil {
-		return nil, fmt.Errorf("no nodes in the tree")
-	}
-	node, err := rt.Search(key)
-	if err != nil {
-		return nil, err
-	}
-	// WTH is the successor?
-	// if node.
-	return node, nil
-}
