@@ -155,6 +155,11 @@ func TestGetPredecessor(t *testing.T) {
 		"no node supplied": {
 			err: fmt.Errorf("no node supplied"),
 		},
+		"nil child": {
+			input:  []int{7, 18, 3, 10, 22, 8, 11, 26, 15},
+			output: &redblack.Node{Key: 11},
+			base:   11,
+		},
 		"use root example": {
 			input:  []int{7, 18, 3, 10, 22, 8, 11, 26, 15},
 			output: &redblack.Node{Key: 8},
@@ -187,7 +192,7 @@ func TestGetPredecessor(t *testing.T) {
 			if tc.err == nil {
 				assert.Nil(t, err, "searching for predecessor of %d generated an unexpected error %v", tc.base, err)
 				assert.NotNil(t, output, "predecessor of %d should not be nil", tc.base)
-				assert.Equal(t, output.Key, tc.output.Key, "got %d when %d was expected", output.Key, tc.output.Key)
+				assert.Equal(t, tc.output.Key, output.Key, "got %d when %d was expected", output.Key, tc.output.Key)
 			} else {
 				assert.NotNil(t, err, "expected an error when searching for predecessor of %d", tc.base)
 				assert.EqualError(t, err, tc.err.Error(), "wanted %s, got %s", tc.err.Error(), err.Error())
@@ -210,6 +215,11 @@ func TestGetSuccessor(t *testing.T) {
 			input:  []int{7, 18, 3, 10, 22, 8, 11, 26, 15},
 			output: &redblack.Node{Key: 11},
 			base:   10,
+		},
+		"nil child": {
+			input:  []int{7, 18, 3, 10, 22, 8, 11, 26},
+			output: &redblack.Node{Key: 11},
+			base:   11,
 		},
 		"simple example": {
 			input:  []int{7, 18, 3, 10, 22, 8, 11, 26, 15},
