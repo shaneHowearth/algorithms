@@ -61,7 +61,7 @@ func TestSearch(t *testing.T) {
 			if tc.err == nil {
 				assert.Nil(t, err, "got unexpected error searching for %d", tc.key)
 				assert.NotNil(t, node, "was expecting a node when searching for %d", tc.key)
-				assert.Equal(t, node.Key, tc.output.Key)
+				assert.Equal(t, tc.output.Key, node.Key, "expected %d but got %d in search", tc.output.Key, node.Key)
 			} else {
 				assert.NotNil(t, err, "was expecting an error searching for %d", tc.key)
 				assert.Nil(t, node, "was not expecting a node when searching for %d", tc.key)
@@ -100,10 +100,10 @@ func TestGetMin(t *testing.T) {
 			if tc.err == nil {
 				assert.Nil(t, err, "was not expecting an error %v", err)
 				assert.NotNil(t, node, "was expecting a node")
-				assert.Equal(t, node.Key, tc.output.Key, "wanted %d, got %d", tc.output.Key, node.Key)
+				assert.Equal(t, tc.output.Key, node.Key, "wanted %d, got %d", tc.output.Key, node.Key)
 			} else {
 				assert.NotNil(t, err, "was expecting an error")
-				assert.EqualError(t, err, tc.err.Error(), "wanted %s, got %s", tc.err.Error(), err.Error())
+				assert.EqualError(t, tc.err, err.Error(), "wanted %s, got %s", tc.err.Error(), err.Error())
 			}
 		})
 	}
@@ -135,12 +135,104 @@ func TestGetMax(t *testing.T) {
 			if tc.err == nil {
 				assert.Nil(t, err, "was not expecting an error %v", err)
 				assert.NotNil(t, node, "was expecting a node")
-				assert.Equal(t, node.Key, tc.output.Key, "wanted %d, got %d", tc.output.Key, node.Key)
+				assert.Equal(t, tc.output.Key, node.Key, "wanted %d, got %d", tc.output.Key, node.Key)
 			} else {
 				assert.NotNil(t, err, "was expecting an error")
-				assert.EqualError(t, err, tc.err.Error(), "wanted %s, got %s", tc.err.Error(), err.Error())
+				assert.EqualError(t, tc.err, err.Error(), "wanted %s, got %s", tc.err.Error(), err.Error())
 			}
 
+		})
+	}
+}
+
+func TestGetPredecessor(t *testing.T) {
+	testcases := map[string]struct {
+		input  []int
+		output *redblack.Node
+		base   int // key of the node that we want the predecessor of
+		err    error
+	}{
+		"no node supplied": {
+			err: fmt.Errorf("no node supplied"),
+		},
+		"simple example": {
+			input:  []int{7, 18, 3, 10, 22, 8, 11, 26},
+			output: &redblack.Node{Key: 26},
+			base:   18,
+		},
+	}
+	for name, tc := range testcases {
+		t.Run(name, func(t *testing.T) {
+			rt := redblack.Tree{}
+			for i := range tc.input {
+				err := rt.Insert(tc.input[i], nil)
+				assert.Nil(t, err, "inserting %d generated error %v", tc.input[i], err)
+			}
+
+			var node *redblack.Node
+			var err error
+			if tc.err == nil {
+				node, err = rt.Search(tc.base)
+				assert.Nil(t, err, "searching for %d generated error %v", tc.base, err)
+			}
+
+			var output *redblack.Node
+			output, err = rt.GetPredecessor(node)
+
+			if tc.err == nil {
+				assert.Nil(t, err, "searching for predecessor of %d generated an unexpected error %v", tc.base, err)
+				assert.NotNil(t, output, "predecessor of %d should not be nil", tc.base)
+				assert.Equal(t, output.Key, tc.output.Key, "got %d when %d was expected", output.Key, tc.output.Key)
+			} else {
+				assert.NotNil(t, err, "expected an error when searching for predecessor of %d", tc.base)
+				assert.EqualError(t, err, tc.err.Error(), "wanted %s, got %s", tc.err.Error(), err.Error())
+			}
+		})
+	}
+}
+
+func TestGetSuccessor(t *testing.T) {
+	testcases := map[string]struct {
+		input  []int
+		output *redblack.Node
+		base   int // key of the node that we want the successor of
+		err    error
+	}{
+		"no node supplied": {
+			err: fmt.Errorf("no node supplied"),
+		},
+		"simple example": {
+			input:  []int{7, 18, 3, 10, 22, 8, 11, 26, 15},
+			output: &redblack.Node{Key: 11},
+			base:   18,
+		},
+	}
+	for name, tc := range testcases {
+		t.Run(name, func(t *testing.T) {
+			rt := redblack.Tree{}
+			for i := range tc.input {
+				err := rt.Insert(tc.input[i], nil)
+				assert.Nil(t, err, "inserting %d generated error %v", tc.input[i], err)
+			}
+
+			var node *redblack.Node
+			var err error
+			if tc.err == nil {
+				node, err = rt.Search(tc.base)
+				assert.Nil(t, err, "searching for %d generated error %v", tc.base, err)
+			}
+
+			var output *redblack.Node
+			output, err = rt.GetSuccessor(node)
+
+			if tc.err == nil {
+				assert.Nil(t, err, "searching for successor of %d generated an unexpected error %v", tc.base, err)
+				assert.NotNil(t, output, "successor of %d should not be nil", tc.base)
+				assert.Equal(t, tc.output.Key, output.Key, "got %d when %d was expected", output.Key, tc.output.Key)
+			} else {
+				assert.NotNil(t, err, "expected an error when searching for successor of %d", tc.base)
+				assert.EqualError(t, err, tc.err.Error(), "wanted %s, got %s", tc.err.Error(), err.Error())
+			}
 		})
 	}
 }
