@@ -155,9 +155,14 @@ func TestGetPredecessor(t *testing.T) {
 		"no node supplied": {
 			err: fmt.Errorf("no node supplied"),
 		},
+		"use root example": {
+			input:  []int{7, 18, 3, 10, 22, 8, 11, 26, 15},
+			output: &redblack.Node{Key: 8},
+			base:   10,
+		},
 		"simple example": {
 			input:  []int{7, 18, 3, 10, 22, 8, 11, 26},
-			output: &redblack.Node{Key: 26},
+			output: &redblack.Node{Key: 11},
 			base:   18,
 		},
 	}
@@ -201,9 +206,14 @@ func TestGetSuccessor(t *testing.T) {
 		"no node supplied": {
 			err: fmt.Errorf("no node supplied"),
 		},
-		"simple example": {
+		"use root example": {
 			input:  []int{7, 18, 3, 10, 22, 8, 11, 26, 15},
 			output: &redblack.Node{Key: 11},
+			base:   10,
+		},
+		"simple example": {
+			input:  []int{7, 18, 3, 10, 22, 8, 11, 26, 15},
+			output: &redblack.Node{Key: 22},
 			base:   18,
 		},
 	}

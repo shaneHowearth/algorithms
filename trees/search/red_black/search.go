@@ -75,6 +75,12 @@ func (rt *Tree) GetSuccessor(node *Node) (*Node, error) {
 		return nil, fmt.Errorf("no node supplied")
 	}
 
+	if node.Child[Right] != nil {
+		node = node.Child[Right]
+	} else {
+		return node, nil
+	}
+
 	for {
 		if node.Child[Left] == nil {
 			return node, nil
@@ -90,6 +96,12 @@ func (rt *Tree) GetPredecessor(node *Node) (*Node, error) {
 	defer rt.l.RUnlock()
 	if node == nil {
 		return nil, fmt.Errorf("no node supplied")
+	}
+
+	if node.Child[Left] != nil {
+		node = node.Child[Left]
+	} else {
+		return node, nil
 	}
 
 	for {
